@@ -1,13 +1,13 @@
 #import dependecies
 import os
-
+​
 #module for reading CSV files
 import csv
 import math
-
+​
 budget_file = os.path.join('budget_data.csv')
 output_file = os.path.join('budget_data_analysis.txt')
-
+​
 #using csv module to read data
 with open(budget_file, newline ='') as csvfile:
     
@@ -41,27 +41,27 @@ with open(budget_file, newline ='') as csvfile:
     
     
     #loop through each line of the csv file (per the variable csvreader)
-    for line in csvreader:  
+    for record in csvreader:  
         #add 1 to 'month_total' value for each row
         month_total += 1   
         #add the value in column 2 (Profit/Loss) to the net change variable
-        net_change += int(line[1]) 
+        net_change += int(record[1]) 
         
         #conditional if profit/loss value is greater than the increase value set the greater value as the value for the increase value variable
         #and set the date value as the increase date
-        if int(line[1]) > greatest_change['increase_value']:
+        if int(record[1]) > greatest_change['increase_value']:
             
-            greatest_change['increase_value'] = int(line[1])   
+            greatest_change['increase_value'] = int(record[1])   
             
-            greatest_change['increase_date'] = line[0]   #... set "Date" value from file as value for 'increase_date' key ...
+            greatest_change['increase_date'] = record[0]   #... set "Date" value from file as value for 'increase_date' key ...
         
         #otherwise if the profit/loss value is less than the decrease value set the lesser value as the decrese value variable
         #and set the date value as the decrease date
-        elif int(line[1]) < greatest_change['decrease_value']:   
+        elif int(record[1]) < greatest_change['decrease_value']:   
             
-            greatest_change['decrease_value'] = int(line[1])   
+            greatest_change['decrease_value'] = int(record[1])   
             
-            greatest_change['decrease_date'] = line[0]   
+            greatest_change['decrease_date'] = record[0]   
        
     
     
@@ -80,13 +80,13 @@ with open(budget_file, newline ='') as csvfile:
     for row in csvreader:
         total += int(row[1])
   #open text file and write the results      
-with open(output_file, mode='w') as txtFile:   
-    txtFile.writelines(results)   
+with open(output_file, mode='w') as text_file:   
+    text_file.writelines(results)   
   #open text file and print results
-with open(output_file, mode='r') as txtFile:   #Open text write file in read mode and set to 'txtFile' variable
-    print(txtFile.read())   #print contents of text write file to console
+with open(output_file, mode='r') as text_file:   #Open text write file in read mode and set to 'text_file' variable
+    print(text_file.read())   #print contents of text write file to console
     
-
+​
         
 print (total)
 print(results)

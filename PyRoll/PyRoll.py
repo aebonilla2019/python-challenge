@@ -27,18 +27,18 @@ with open(data_file, mode='r') as csv_file:
     
     
     #loop through the csv_reader variable by line
-    for line in csv_reader:   
+    for vote in csv_reader:   
         
         #add one to the total_votes
         total_votes += 1   
         
         # if the candidate name is not in the dictionary as a key add it tot he dictionary along with the number of vote and vote percentage
-        if line[2] not in results_list.keys():   
-            results_list[line[2]] = {'num_votes': 0, 'percentVotes': 0}   
+        if vote[2] not in results_list.keys():   
+            results_list[vote[2]] = {'num_votes': 0, 'percentVotes': 0}   
         
         # if the candidate is in the dictionary add 1 to the votes for that candidate
-        if line[2] in results_list.keys():   
-            results_list[line[2]]['num_votes'] += 1   
+        if vote[2] in results_list.keys():   
+            results_list[vote[2]]['num_votes'] += 1   
     
     #set results list that contains total_votes
     resultsSummary = ['Total Votes: ' + str(total_votes) + '\n']   
@@ -69,9 +69,9 @@ with open(data_file, mode='r') as csv_file:
     resultsSummary.append('\nWinner: ' + winner_dict['name'])   
     
     #with write_file open write each line of resultssummary to the file
-    with open(write_file, mode='w') as txtFile:   
-        txtFile.writelines(resultsSummary)   
+    with open(write_file, mode='w') as text_file:   
+        text_file.writelines(resultsSummary)   
 
     #print results of the text file
-    with open(write_file, mode='r') as txtFile:   
-        print(txtFile.read())   
+    with open(write_file, mode='r') as text_file:   
+        print(text_file.read())   
